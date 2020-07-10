@@ -1,0 +1,16 @@
+.active {
+    border: red solid 2px;
+    width: 90px!important;
+}
+
+.noActive {
+    width: 90px!important;
+}
+
+.darkkhaki {
+    background-color: darkkhaki;
+}
+
+.darkgreen {
+    background-color: darkgreen;
+}
