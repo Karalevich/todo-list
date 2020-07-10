@@ -32,8 +32,6 @@ const App = () => {
          localStorage.setItem('weekdays', JSON.stringify(weekdays));
     })
 
-    window.weekdays = weekdays;
-
     const changeNotes = (indexDay) => {
         setWeekday(
             weekdays.map((day, index) => {
@@ -67,7 +65,7 @@ const App = () => {
         })
     }
 
-   // setInterval(checkNotes, 60000)
+    setInterval(checkNotes, 60000)
 
     const updateThing = (thing, indexThing) => {
         setWeekday(
