@@ -30,12 +30,13 @@ export const Note = ({note, deleteThing, updateThing, updateTime}) => {
         setTime(e.currentTarget.value)
     }
 
-
     return (
         <li className="list-group-item">
             <div className={classes.wrapper}>
                 {!editModeThing &&
-                <div onDoubleClick={changeThing} className={cn(classes.thing,{ [classes.completed]: note.completed})}>{note.thing}</div>
+                <div onDoubleClick={changeThing} className={cn(classes.thing,{ [classes.completed]: note.completed})}>
+                    {note.thing}
+                </div>
                 }
                 {editModeThing &&
                 <div className={classes.thing}>
@@ -43,18 +44,23 @@ export const Note = ({note, deleteThing, updateThing, updateTime}) => {
                 </div>
                 }
                 {!editModeTime &&
-                <div onDoubleClick={changeTime} className={cn(classes.time,{ [classes.completed]: note.completed})}>{note.time}</div>
+                <div onDoubleClick={changeTime} className={cn(classes.time,{ [classes.completed]: note.completed})}>
+                    {note.time}
+                </div>
                 }
                 {editModeTime &&
                 <div className={classes.time}>
                     <input onChange={onChangeTime} autoFocus={true} onBlur={changeTime} value={time}/>
                 </div>
                 }
-                <button onClick={() => {
-                    deleteThing(note.id)
-                }} type="button" className="btn btn-outline-danger btn-sm">
-                    &times;
-                </button>
+                <div className={classes.delete}>
+                    <button onClick={() => {
+                        deleteThing(note.id)
+                    }} type="button" className="btn btn-outline-danger btn-sm">
+                        &times;
+                    </button>
+                </div>
+
             </div>
         </li>
     )

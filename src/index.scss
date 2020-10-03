@@ -27,16 +27,16 @@ code {
 
 @keyframes note {
   0% {
-    transform: translateY(0);
+    transform: translateX(0);
   }
 
   30% {
     opacity: .7;
-    transform: translateY(30px);
+    transform: translateX(30px);
   }
 
   100% {
     opacity: 0;
-    transform: translateY(-200px);
+    transform: translateX(-200px);
   }
 }

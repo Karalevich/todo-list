@@ -1,9 +1,13 @@
 .time {
-    width: 10%;
+    width: 20%;
+}
+
+.delete{
+    width: 5%;
 }
 
 .thing {
-    width: 80%
+    width: 70%
 }
 
 .wrapper {
@@ -17,4 +21,8 @@
 
 .completed {
     color: red;
+}
+
+input{
+    width: 80%;
 }

@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {Weekdays} from "./Components/Weekdays/Weeksday";
-import {Notes} from "./Components/Things/Notes/Notes";
+import { Things} from "./Components/Things/Things";
 import {nanoid} from 'nanoid';
 import { DndProvider } from 'react-dnd'
 import { HTML5Backend } from 'react-dnd-html5-backend'
@@ -169,7 +169,7 @@ const App = () => {
         <DndProvider backend={HTML5Backend}>
             <div className="container">
                 <Weekdays date={currentlyWeekday} weekdays={weekdays} changeWeekday={changeWeekday}/>
-                <Notes changeNotes={changeNotes}
+                <Things changeNotes={changeNotes}
                        notes={weekdays[currentlyWeekday].notes}
                        deleteThing={deleteThing}
                        onCreate={onCreate}

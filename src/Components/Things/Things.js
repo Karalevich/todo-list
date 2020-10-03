@@ -1,30 +1,22 @@
 import React from "react";
-import {Note} from "./Notes/Note/Note";
-import {TransitionGroup, CSSTransition} from "react-transition-group";
+import classes from "./Things.module.css";
+import {Form} from "./Form/Form";
+import {Star} from "./DnDStar/Star";
+import {Notes} from "./Notes/Notes";
 
-
-export const Things = ({notes, deleteThing, updateThing, updateTime}) => {
-
-    if (notes === null) {
-        return <></>
-    }
-
-    let note = notes
-        .filter(note => note)
-        .map((note, index) => {
-            return <CSSTransition  key={index} classNames={'note'} timeout={400}>
-                     <Note deleteThing={deleteThing}
-                      note={note}
-                      updateThing={updateThing}
-                      updateTime={updateTime}/>
-                    </CSSTransition>
-        })
+export  const Things = ({notes, deleteThing, onCreate, updateThing, updateTime, changeNotes}) => {
 
     return (
-        <div>
-            <TransitionGroup  className="list-group">
-                {note}
-            </TransitionGroup>
+        <div className={classes.wrapper}>
+            <div className="jumbotron jumbotron-fluid">
+                <Star changeNotes={changeNotes}/>
+                <div className="container">
+                    <Notes notes={notes} deleteThing={deleteThing}
+                            updateThing={updateThing} updateTime={updateTime}/>
+                    <hr/>
+                    <Form onCreate={onCreate}/>
+                </div>
+            </div>
         </div>
 
     )
