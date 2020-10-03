@@ -4,7 +4,7 @@ import {Form} from "./Form/Form";
 import {Star} from "./DnDStar/Star";
 import {Notes} from "./Notes/Notes";
 
-export  const Things = ({notes, deleteThing, onCreate, updateThing, updateTime, changeNotes}) => {
+export  const Things = ({notes, deleteThing, onCreate, updateThing, updateTime, changeNotes, changeDone}) => {
 
     return (
         <div className={classes.wrapper}>
@@ -12,7 +12,7 @@ export  const Things = ({notes, deleteThing, onCreate, updateThing, updateTime, 
                 <Star changeNotes={changeNotes}/>
                 <div className="container">
                     <Notes notes={notes} deleteThing={deleteThing}
-                            updateThing={updateThing} updateTime={updateTime}/>
+                            updateThing={updateThing} updateTime={updateTime} changeDone={changeDone}/>
                     <hr/>
                     <Form onCreate={onCreate}/>
                 </div>

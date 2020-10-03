@@ -2,7 +2,7 @@ import React, { useState} from "react";
 import classes from "./Note.module.css";
 import cn from 'classnames'
 
-export const Note = ({note, deleteThing, updateThing, updateTime}) => {
+export const Note = ({note, deleteThing, updateThing, updateTime, changeDone}) => {
     const [editModeThing, setEditModeThing] = useState(false);
     const [editModeTime, setEditModeTime] = useState(false);
     const [thing, setThing] = useState(note.thing);
@@ -30,9 +30,18 @@ export const Note = ({note, deleteThing, updateThing, updateTime}) => {
         setTime(e.currentTarget.value)
     }
 
+    const isDone = (e) => {
+        changeDone(e.currentTarget.id)
+    }
+
     return (
         <li className="list-group-item">
             <div className={classes.wrapper}>
+                <div className={classes.done}>
+                    <label htmlFor={note.id}></label>
+                    <input type="checkbox" id={note.id} name="done" value="done" checked={note.done}
+                           onChange={isDone}/>
+                </div>
                 {!editModeThing &&
                 <div onDoubleClick={changeThing} className={cn(classes.thing,{ [classes.completed]: note.completed})}>
                     {note.thing}

@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import {Weekdays} from "./Components/Weekdays/Weeksday";
-import { Things} from "./Components/Things/Things";
+import {Things} from "./Components/Things/Things";
 import {nanoid} from 'nanoid';
-import { DndProvider } from 'react-dnd'
-import { HTML5Backend } from 'react-dnd-html5-backend'
+import {DndProvider} from 'react-dnd'
+import {HTML5Backend} from 'react-dnd-html5-backend'
 
 const App = () => {
     const [date, setDate] = useState(new Date().getDay());
@@ -21,7 +21,7 @@ const App = () => {
     useEffect(() => {
         const a = new Date().getDay();
         setDate(a);
-        if(localStorage.getItem('weekdays') == null){
+        if (localStorage.getItem('weekdays') == null) {
             setWeekday(weekdays)
         } else {
             setWeekday(JSON.parse(localStorage.getItem('weekdays')))
@@ -29,14 +29,14 @@ const App = () => {
     }, [])
 
     useEffect(() => {
-         localStorage.setItem('weekdays', JSON.stringify(weekdays));
+        localStorage.setItem('weekdays', JSON.stringify(weekdays));
     })
 
     const changeNotes = (indexDay) => {
         setWeekday(
             weekdays.map((day, index) => {
                 if (index === indexDay) {
-                  day.notes = [...weekdays[currentlyWeekday].notes]
+                    day.notes = [...weekdays[currentlyWeekday].notes]
                 }
                 return day;
             })
@@ -66,6 +66,27 @@ const App = () => {
     }
 
     setInterval(checkNotes, 60000)
+
+    const changeDone = (indexThing) => {
+        console.log(indexThing)
+        setWeekday(
+            weekdays.map((day, index) => {
+                if (index === currentlyWeekday) {
+                    for (let i = 0; i <= day.notes.length; i++) {
+                        if (day.notes[i] == null) {
+                            continue
+                        }
+                        if (day.notes[i].id === indexThing) {
+                            console.log(day.notes[i])
+                            day.notes[i].done = !day.notes[i].done
+                            console.log(day.notes[i])
+                        }
+                    }
+                }
+                return day;
+            })
+        )
+    }
 
     const updateThing = (thing, indexThing) => {
         setWeekday(
@@ -155,7 +176,8 @@ const App = () => {
                         id: nanoid(8),
                         time,
                         thing,
-                        completed: false
+                        completed: false,
+                        done: false
                     }]
                     sortNotes(day.notes)
                 }
@@ -170,11 +192,12 @@ const App = () => {
             <div className="container">
                 <Weekdays date={currentlyWeekday} weekdays={weekdays} changeWeekday={changeWeekday}/>
                 <Things changeNotes={changeNotes}
-                       notes={weekdays[currentlyWeekday].notes}
-                       deleteThing={deleteThing}
-                       onCreate={onCreate}
-                       updateThing={updateThing}
-                       updateTime={updateTime}/>
+                        notes={weekdays[currentlyWeekday].notes}
+                        deleteThing={deleteThing}
+                        onCreate={onCreate}
+                        updateThing={updateThing}
+                        changeDone={changeDone}
+                        updateTime={updateTime}/>
             </div>
         </DndProvider>
     );

@@ -10,6 +10,10 @@
     width: 70%
 }
 
+.done {
+    width: 5%
+}
+
 .wrapper {
     justify-content: space-between;
     display: flex;
